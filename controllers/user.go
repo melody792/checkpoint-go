@@ -4,6 +4,7 @@ import (
 	. "checkpoint-go/models"
 	"checkpoint-go/utils"
 	"fmt"
+
 	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -17,7 +18,7 @@ func (c *RegisterController) Post() {
 	username := c.GetString("username")
 	password := c.GetString("password")
 	if !utils.CheckUsername(username) {
-		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "用户名格式错误", }
+		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "用户名格式错误"}
 		c.ServeJSON()
 		return
 	}
@@ -25,7 +26,7 @@ func (c *RegisterController) Post() {
 	if err != nil {
 		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "注册失败", "data": err}
 	} else {
-		c.Data["json"] = map[string]interface{}{"code": 1, "msg": fmt.Sprintf("[%d] ", id) + "注册成功", }
+		c.Data["json"] = map[string]interface{}{"code": 1, "msg": fmt.Sprintf("[%d] ", id) + "注册成功"}
 	}
 	c.ServeJSON()
 }
@@ -49,7 +50,7 @@ func (c *LoginController) Post() {
 		pwd := utils.Md5(password + user.Salt)
 		if pwd == user.Password {
 			c.SetSession("username", username)
-			c.Data["json"] = map[string]interface{}{"code": 1, "msg": "用户["+ user.Username +"]登录成功"}
+			c.Data["json"] = map[string]interface{}{"code": 1, "msg": "用户[" + user.Username + "]登录成功"}
 		} else {
 			c.Data["json"] = map[string]interface{}{"code": 0, "msg": "密码错误"}
 		}
@@ -65,13 +66,13 @@ type EditUserInfoController struct {
 func (c *EditUserInfoController) Get() {
 	user := c.GetSession("username")
 	if user == nil {
-		c.Data["json"] = map[string]interface{}{"code": 1001, "msg": "未登录",}
+		c.Data["json"] = map[string]interface{}{"code": 1001, "msg": "未登录"}
 		c.ServeJSON()
 		return
 	}
 	id, err := c.GetInt("id")
 	if err != nil {
-		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "缺少id",}
+		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "缺少id"}
 		c.ServeJSON()
 		return
 	}
@@ -79,13 +80,13 @@ func (c *EditUserInfoController) Get() {
 	if err != nil {
 		c.Data["json"] = map[string]interface{}{
 			"code": 0,
-			"msg": "请求失败",
+			"msg":  "请求失败",
 			"data": err,
 		}
 	} else {
 		c.Data["json"] = map[string]interface{}{
 			"code": 1,
-			"msg": "请求成功",
+			"msg":  "请求成功",
 			"data": userInfo,
 		}
 	}
@@ -95,7 +96,7 @@ func (c *EditUserInfoController) Get() {
 func (c *EditUserInfoController) Post() {
 	user := c.GetSession("username")
 	if user == nil {
-		c.Data["json"] = map[string]interface{}{"code": 1001, "msg": "未登录",}
+		c.Data["json"] = map[string]interface{}{"code": 1001, "msg": "未登录"}
 		c.ServeJSON()
 		return
 	}
@@ -103,7 +104,7 @@ func (c *EditUserInfoController) Post() {
 	avatar := c.GetString("avatar")
 	nickname := c.GetString("nickname")
 	if err != nil {
-		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "缺少id",}
+		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "缺少id"}
 		c.ServeJSON()
 		return
 	}
@@ -111,13 +112,13 @@ func (c *EditUserInfoController) Post() {
 	if err != nil {
 		c.Data["json"] = map[string]interface{}{
 			"code": 0,
-			"msg": "请求失败",
+			"msg":  "请求失败",
 			"data": err,
 		}
 	} else {
 		c.Data["json"] = map[string]interface{}{
 			"code": 1,
-			"msg": "请求成功",
+			"msg":  "请求成功",
 			"data": num,
 		}
 	}
