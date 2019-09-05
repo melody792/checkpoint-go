@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content-wrapper">
       <Menu mode="horizontal" active-name="1">
-        <h4>文档管理</h4>
+        <h4>用户管理</h4>
         <Dropdown class="avatar-wrapper" @on-click="handleDropdownMenu">
           <a href="javascript:void(0)">
             <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="margin-right:6px;" />
