@@ -27,6 +27,7 @@
 - vue create checkpoint-app-vue
 - cd checkpoint-app-vue
 - npm install
+- npm run build
 - npm run serve
 - add frontend
 
@@ -37,8 +38,18 @@
 - docker run -d --name go-checkpoint -p 5000:5000 bob/checkpoint-go:latest
 - docker container logs 531
 
-## kubernetes:
+## istio and kubernetes: 
+- docs:https://istio.io/docs/setup/kubernetes/install/kubernetes/
 - install kubectl and minikube
+- minikube tunnel: provide a load balancer for use by Istio,
+- cd istio/istio-1.2.5
+- for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done
+- kubectl apply -f install/kubernetes/istio-demo.yaml
+- kubectl get svc -n istio-system: verify the install
+- kubectl get pods -n istio-system: Ensure corresponding Kubernetes pods are deployed and have a STATUS of Running
+### deploy bookinfo
+- kubectl label namespace default istio-injection=enabled
+- kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 
 ## istio:
 
