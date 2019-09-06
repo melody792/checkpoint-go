@@ -124,3 +124,37 @@ func (c *EditUserInfoController) Post() {
 	}
 	c.ServeJSON()
 }
+type DeleteUserInfoByIdController struct {
+	beego.Controller
+}
+func (c *DeleteUserInfoByIdController) Post() {
+	user := c.GetSession("username")
+	if user == nil {
+		c.Data["json"] = map[string]interface{}{"code": 1001, "msg": "未登录"}
+		c.ServeJSON()
+		return
+	}
+	id, err := c.GetInt("id")
+	avatar := c.GetString("avatar")
+	nickname := c.GetString("nickname")
+	if err != nil {
+		c.Data["json"] = map[string]interface{}{"code": 0, "msg": "缺少id"}
+		c.ServeJSON()
+		return
+	}
+	num, err := AlterUserInfo(id, avatar, nickname)
+	if err != nil {
+		c.Data["json"] = map[string]interface{}{
+			"code": 0,
+			"msg":  "请求失败",
+			"data": err,
+		}
+	} else {
+		c.Data["json"] = map[string]interface{}{
+			"code": 1,
+			"msg":  "请求成功",
+			"data": num,
+		}
+	}
+	c.ServeJSON()
+}
