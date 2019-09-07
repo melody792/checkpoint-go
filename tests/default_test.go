@@ -1,12 +1,15 @@
 package test
 
 import (
+	_ "checkpoint-go/routers"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"testing"
-	"runtime"
 	"path/filepath"
-	_ "checkpoint-go/routers"
+	"reflect"
+	_ "reflect"
+	"runtime"
+	"testing"
 
 	"github.com/astaxie/beego"
 	. "github.com/smartystreets/goconvey/convey"
@@ -34,5 +37,10 @@ func TestGet(t *testing.T) {
 	                So(w.Body.Len(), ShouldBeGreaterThan, 0)
 	        })
 	})
+}
+
+func TestNil(t *testing.T) {
+	var a *int
+	fmt.Println("var a *int:", reflect.ValueOf(a).IsValid())
 }
 

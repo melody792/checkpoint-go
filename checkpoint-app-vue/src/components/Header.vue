@@ -15,7 +15,7 @@
               <router-link to="/personalPage">个人主页</router-link>
             </DropdownItem>
             <DropdownItem name="toCreateDoc">
-              <router-link to="/editDocument">创建文档</router-link>
+              <router-link to="/editDocument">创建用户</router-link>
             </DropdownItem>
             <DropdownItem name="toLogin">
               <span>登出</span>
@@ -61,7 +61,7 @@ a {
   left: 0;
   z-index: 98;
   .content-wrapper {
-    width: 1000px;
+    width: 1400px;
     height: 100%;
     margin: 0 auto;
     .ivu-menu-horizontal {

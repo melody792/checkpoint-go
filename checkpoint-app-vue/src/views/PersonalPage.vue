@@ -5,7 +5,7 @@
       <div class="left-wrapper">
         <div class="user-info">
           <img src="../assets/logo.png" alt="">
-          <p class="nickname">昵称：</p>
+          <p class="nickname">昵称：super</p>
           <Button style="margin-top:12px;">修改资料</Button>
         </div>
       </div>
