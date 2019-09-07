@@ -5,14 +5,8 @@
       <div class="left-wrapper">
         <div class="user-info">
           <img src="../assets/logo.png" alt="">
-          <p class="nickname">昵称：sangshaofeng</p>
+          <p class="nickname">昵称：</p>
           <Button style="margin-top:12px;">修改资料</Button>
-        </div>
-        <div class="user-doc">
-          <ul>
-            <li><Icon type="md-add" />我创建的文档</li>
-            <li><Icon type="md-heart-outline" />我收藏的文档</li>
-          </ul>
         </div>
       </div>
       <div class="right-wrapper">
